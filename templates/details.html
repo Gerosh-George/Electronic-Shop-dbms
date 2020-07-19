@@ -1,0 +1,17 @@
+
+
+{% load crispy_forms_tags %}
+
+
+<div style="margin-top: 80px; width: 900px; margin:80px auto;">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Customer Details</legend>
+            {{form | crispy}}
+        </fieldset>
+     <button class="btn btn-primary" type="submit">
+         Submit
+     </button>
+    </form>
+</div>

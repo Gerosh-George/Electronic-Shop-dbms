@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<h2>Laptops</h2>
+
+<div class="row">
+    {% for laptop in laptops %}
+    <div class="col">
+        <div class="product" style="width: 18rem;">
+            <img src="{{laptop.image_url}}" class="card-img-top product-image" style="margin-top: 10%;" alt="product image">
+            <div class="product-description">
+                <h5 class="product-name">{{laptop.name}}</h5>
+                <p class="product-price">${{laptop.price}}</p>
+                
+                {% ifequal laptop.stock 0 %}
+                <button  class="btn btn-add-to-cart btn-warning">Out Of Stock</button>
+                {% else %}
+                {% if laptop.name in addedItems%}
+                <a href="{% url 'addItem' laptop.id  laptop %}"  class="btn btn-add-to-cart btn-success">Added To Cart</a>
+                {% else %}
+                <a href="{% url 'addItem' laptop.id  laptop %}"  class="btn btn-add-to-cart btn-primary" id="{ laptop.name}}">Add To Cart</a>
+                {% endif %}
+                {% endifequal %}
+                
+                </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

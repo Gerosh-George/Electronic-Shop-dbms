@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<h2>Mobiles</h2>
+
+<div class="row">
+    {% for mobile in mobiles %}
+    <div class="col">
+        <div class="product" style="width: 18rem;">
+            <img src="{{mobile.image_url}}" class="card-img-top product-image image" alt="product image">
+            <div class="product-description">
+                <h5 class="product-name">{{mobile.name}}</h5>
+                <p class="product-price">${{mobile.price}}</p>
+
+                {% ifequal mobile.stock 0 %}
+                <button  class="btn btn-warning">Out Of Stock</button>
+                {% else %}
+                {% if mobile.name in addedItems%}
+                <a href="{% url 'addItem' mobile.id 'mobile' %}"  class="btn btn-success">Added To Cart</a>
+                {% else %}
+                <a href="{% url 'addItem' mobile.id 'mobile' %}"  class="btn btn-add-to-cart btn-primary" value="{{mobile.id}}">Add To Cart</a>
+                {% endif %}
+                {% endifequal %}
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+</div>
+{% endblock %}
+

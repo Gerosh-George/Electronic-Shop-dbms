@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<h2 class="section-header">Order Summary</h2>
+
+<div class="details">  
+  <span class="title">Customer Name:</span>
+  <span class="name">{{order_details.customer}}</span>  
+  <span class="title date">Date:</span>
+  <span>{{order_details.date_ordered}}</span>
+</div>
+
+
+
+<table class="table table-bordered">
+  <tr>
+    <th scope="col">Item</th>
+    <th scope="col">Price</th>
+    <th scope="col">Color</th>
+  </tr>
+  {% for item in product_details %}
+  <tr>
+    <td>{{item.product.name}}</td>
+    <td>${{item.product.price}}</td>
+    <td>{{item.color}}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <th scope="col">Order Total</th>
+    <td colspan="2" class="order-total">${{order_details.total}}</td>
+  </tr>
+</table>
+
+{% endblock %}
+
+
+
+
+    

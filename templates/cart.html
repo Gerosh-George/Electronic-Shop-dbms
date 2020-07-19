@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<script type="text/javascript" src="{% static 'store.js' %}"></script>
+
+<section>
+    <h2 class='section-header'>CART</h2>
+    {% if not items%}
+    <div class="alert alert-primary" role="alert">Cart is empty</div>
+    {% endif %}
+    <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+
+        <span class="cart-price cart-header cart-column">PRICE</span>
+
+        <span class="cart-quantity cart-header cart-column">COLOR</span>
+    </div>
+    <div class="cart-container">
+        {% for product in items%}
+        <div class="cart-row">
+            <div class="cart-item cart-column ">
+                <img class="cart-item-image " src="{{product.item.image_url}}" width="100" height="100">
+                <span class="cart-item-title">{{product.item.name}}</span>
+            </div>
+
+            <span class="cart-price cart-column">${{product.item.price}}</span>
+            <div class="cart-quantity cart-column">
+                <select class="cart-color-choice" id="colors">
+                    {% for color in colors %}
+                    {% ifequal color.product product.item %}
+                    <option value="{{color}}">{{color}}</option>
+                    {% endifequal %}
+                    {% endfor %}
+                </select>
+                <a href="{% url 'deleteItem' product.id %}" class="btn btn-danger" type="button">REMOVE</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">${{total}}</span>
+    </div>
+    {% if items %}
+    <a href="{% url 'placeOrder'%}" class="btn btn-primary btn-purchase" type="button">PURCHASE</a>
+    {% else %}
+    <button class="btn btn-primary btn-purchase" type="button" disabled>PURCHASE</button>
+    {% endif %}
+</section>
+
+
+
+{% endblock %}
