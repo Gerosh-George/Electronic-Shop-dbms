@@ -6,6 +6,7 @@ MySQL database is used for backend purpose.
 - pip install django
 
 ### Some commands to start django project:
+(Note: These are for creating a new project for yourself)
 - To initialize the project: django-admin startproject project_name 
 - To create an app in the project: python manage.py startapp app_name
 
