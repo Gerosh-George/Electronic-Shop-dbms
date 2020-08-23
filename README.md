@@ -4,6 +4,8 @@ MySQL database is used for backend purpose.
 
 ### Setup to run the project:
 - pip install django
+- pip install django-crispy-forms
+- pip install django-phone-field
 
 ### Some commands to start django project:
 (Note: These are for creating a new project for yourself)
