@@ -14,6 +14,6 @@ class UserRegisterForm(UserCreationForm):
 class CustomerDetailsForm(forms.ModelForm):
     class Meta:
         model=Customer
-        fields=['name','address','phone_number']
+        fields=['name','address']
 
 
