@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
 
     'crispy_forms',
+    'phone_field',
     
 
 
