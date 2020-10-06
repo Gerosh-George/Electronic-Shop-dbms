@@ -15,4 +15,8 @@ MySQL database is used for backend purpose.
 
 To run the server - python manage.py runserver
 
-Note: In the settings.py file of the mysite folder, the database settings dictionary needs to be updated with your database credentials to successfully connect.  
+Note: In the settings.py file of the mysite folder, the database settings dictionary needs to be updated with your database credentials to successfully connect. 
+
+If you are using MYSQL then do the following setup:
+- pip install mysqlclient
+- python manage.py migrate
